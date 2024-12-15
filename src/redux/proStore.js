@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import profiles from './profileSlice'
+import mailValidation from './emailSlice'
+
 
 const proStore=configureStore({
     reducer:{
-        profileReducer:profiles
+        profileReducer:profiles,
+        mailReducer:mailValidation,
     }
 })
 

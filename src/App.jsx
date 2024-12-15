@@ -9,6 +9,8 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { addNewProfile } from './redux/profileSlice'
 import { useDispatch } from 'react-redux'
+import { emailVerification } from './redux/emailSlice'
+
 
 
 
@@ -27,9 +29,12 @@ function App() {
   const handleShow = () => setShow(true);
 
   const handleAdd=()=>{
+
     const {name,email,bio}=details
+
+     
     if(name && email && bio){
-      console.log(name,email,bio)
+      console.log(name,email,bio);
       dispatch(addNewProfile(details))
       handleClose()
       setDetails({name:'',email:'',bio:''})
@@ -38,6 +43,11 @@ function App() {
     }else{
       alert('adding failed')
     }
+  }
+
+
+  const handleMail=(e)=>{
+    dispatch(emailVerification(e))
   }
 
   return (
@@ -73,7 +83,7 @@ function App() {
               label="Email address"
               className="mb-1"
             >
-              <Form.Control onChange={(e)=>setDetails({...details,email:e.target.value})} type="email" placeholder="name@example.com" />
+              <Form.Control onBlur={(e)=>handleMail(e.target.value)} type="email" placeholder="name@example.com" />
             </FloatingLabel>
 
             <FloatingLabel
