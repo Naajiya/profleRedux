@@ -4,7 +4,7 @@ const mailValidation = createSlice({
     name:'email',
     initialState:{
         email:'',
-        isValid:''
+        isValid:false
     },
     reducers:{
         emailVerification:((state,action)=>{
@@ -12,6 +12,7 @@ const mailValidation = createSlice({
             if((mail.slice(-10)=='@gmail.com')){
                 console.log('true')
                 state.isValid=true
+                state.email=mail;
             }else{
                 console.log('false')
                 state.isValid=false

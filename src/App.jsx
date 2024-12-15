@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { addNewProfile } from './redux/profileSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { emailVerification } from './redux/emailSlice'
 
 
@@ -18,36 +18,102 @@ import { emailVerification } from './redux/emailSlice'
 
 function App() {
 
+  const valid = useSelector(state => state.mailReducer.isValid)
+  console.log('valid', valid)
+
+  const mail = useSelector(state=>state.mailReducer.email)
+
   const dispatch = useDispatch()
 
-  const [details, setDetails] = useState({ name: '', email: '', bio: '' })
+  const [details, setDetails] = useState({ name: '', emails: '', bio: '' })
   console.log(details)
+
+  // validate and info in p tag 
+  const [isMail,setisMail]=useState(false)
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleAdd=()=>{
+  const handleAdd = () => {
 
-    const {name,email,bio}=details
+    if (valid) {
+      console.log('ok in app.jsx')
+       const updateDetails={...details,emails:mail}
+      setDetails(updateDetails)
 
-     
-    if(name && email && bio){
-      console.log(name,email,bio);
-      dispatch(addNewProfile(details))
-      handleClose()
-      setDetails({name:'',email:'',bio:''})
-      alert('successfully added')
+      console.log(updateDetails)
 
+      const { name, emails, bio } = updateDetails
+
+
+      if (name && emails && bio) {
+  
+        console.log(name, emails, bio);
+        dispatch(addNewProfile(updateDetails))
+        handleClose()
+        setDetails({ name: '', emails: '', bio: '' })
+        alert('successfully added')
+  
+      }else{
+        alert('failed to add')
+      }
+
+
+      
     }else{
-      alert('adding failed')
+      console.log('not okey')
+      setisMail(true)
     }
+
+   
   }
 
 
-  const handleMail=(e)=>{
+  // const handleAdd = () => {
+  //   // Check if email is valid
+  //   if (valid) {
+  //     console.log("Email is valid in App.jsx");
+      
+  //     // Update the details with the email value
+  //     const updatedDetails = { ...details, emails: mail }; 
+  //     setDetails(updatedDetails);
+  
+  //     // Extract updated values for validation
+  //     const { name, emails, bio } = updatedDetails;
+  
+  //     // Validate all fields before dispatching
+  //     if (name && emails && bio) {
+  //       console.log("Adding profile:", name, emails, bio);
+  
+  //       // Dispatch the action to add the profile
+  //       dispatch(addNewProfile(updatedDetails));
+  
+  //       // Close modal and reset form
+  //       handleClose();
+  //       setDetails({ name: "", emails: "", bio: "" });
+  //       alert("Successfully added!");
+  //     } else {
+  //       alert("Failed to add. Please fill all fields.");
+  //     }
+  //   } else {
+  //     console.log("Email is not valid");
+  //     setisMail(true); // Show error message or state
+  //   }
+  // };
+  
+
+
+  const handleMail = (e) => {
     dispatch(emailVerification(e))
+
+
+
+  }
+
+  const handleChange=()=>{
+    setisMail(false)
   }
 
   return (
@@ -70,28 +136,36 @@ function App() {
           </Modal.Header>
           <Modal.Body>
 
+
+            {/* Name */}
             <FloatingLabel
               controlId="floatingInput"
               label="name"
               className="mb-1"
             >
-              <Form.Control  onChange={(e)=>setDetails({...details,name:e.target.value})} type="text" placeholder="name@example.com" />
+              <Form.Control onChange={(e) => setDetails({ ...details, name: e.target.value })} type="text" placeholder="name@example.com" />
             </FloatingLabel>
 
+            {/* email */}
             <FloatingLabel
               controlId="floatingInput"
               label="Email address"
               className="mb-1"
             >
-              <Form.Control onBlur={(e)=>handleMail(e.target.value)} type="email" placeholder="name@example.com" />
+              <Form.Control onChange={handleChange} onBlur={(e) => handleMail(e.target.value)} type="email" placeholder="name@example.com" />
             </FloatingLabel>
+           { 
+           isMail &&
+            <p className='text-danger'><i class="fa-solid fa-triangle-exclamation"></i> Enter valid mail</p>
+            }
 
+            {/* bio */}
             <FloatingLabel
               controlId="floatingInput"
               label="bio"
               className="mb-3"
             >
-              <Form.Control onChange={(e)=>setDetails({...details,bio:e.target.value})} type="email" placeholder="name@example.com" />
+              <Form.Control onChange={(e) => setDetails({ ...details, bio: e.target.value })} type="text" placeholder="name@example.com" />
             </FloatingLabel>
 
 
