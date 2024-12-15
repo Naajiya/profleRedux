@@ -71,37 +71,6 @@ function App() {
   }
 
 
-  // const handleAdd = () => {
-  //   // Check if email is valid
-  //   if (valid) {
-  //     console.log("Email is valid in App.jsx");
-      
-  //     // Update the details with the email value
-  //     const updatedDetails = { ...details, emails: mail }; 
-  //     setDetails(updatedDetails);
-  
-  //     // Extract updated values for validation
-  //     const { name, emails, bio } = updatedDetails;
-  
-  //     // Validate all fields before dispatching
-  //     if (name && emails && bio) {
-  //       console.log("Adding profile:", name, emails, bio);
-  
-  //       // Dispatch the action to add the profile
-  //       dispatch(addNewProfile(updatedDetails));
-  
-  //       // Close modal and reset form
-  //       handleClose();
-  //       setDetails({ name: "", emails: "", bio: "" });
-  //       alert("Successfully added!");
-  //     } else {
-  //       alert("Failed to add. Please fill all fields.");
-  //     }
-  //   } else {
-  //     console.log("Email is not valid");
-  //     setisMail(true); // Show error message or state
-  //   }
-  // };
   
 
 
@@ -125,9 +94,9 @@ function App() {
             <Button onClick={handleShow} className='w-25 m-3' variant="outline-light">add New Profile</Button>
 
           </Row>
-          <Col>
+          <Row>
             <Cards />
-          </Col>
+          </Row>
         </Row>
 
         <Modal show={show} onHide={handleClose}>
