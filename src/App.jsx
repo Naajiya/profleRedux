@@ -10,7 +10,7 @@ import Form from 'react-bootstrap/Form';
 import { addNewProfile } from './redux/profileSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { emailVerification } from './redux/emailSlice'
-
+import { addtwofavourite } from './redux/favrtSlice'
 
 
 
@@ -28,6 +28,8 @@ function App() {
   const [details, setDetails] = useState({ name: '', emails: '', bio: '' })
   console.log(details)
 
+  const [updatessDetails,setUpdateDetails]=useState({})
+  console.log("updteeee",updatessDetails)
   // validate and info in p tag 
   const [isMail,setisMail]=useState(false)
 
@@ -41,6 +43,7 @@ function App() {
     if (valid) {
       console.log('ok in app.jsx')
        const updateDetails={...details,emails:mail}
+       setUpdateDetails(updateDetails)
       setDetails(updateDetails)
 
       console.log(updateDetails)

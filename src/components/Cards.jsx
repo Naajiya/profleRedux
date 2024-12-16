@@ -10,7 +10,8 @@ import { Col, Row } from 'react-bootstrap';
 
 function Cards() {
   const profDetls = useSelector(state => state.profileReducer)
-  console.log(profDetls)
+  // const email=useSelector(state=>state.mailReducer.email)
+  console.log("prompt for profils",profDetls)
   return (
     <>
     <Row>
@@ -18,14 +19,16 @@ function Cards() {
      { profDetls?.length > 0 ?
           profDetls.map(prof => (
             <Col>
-            <Card className='mb-5 d-flex flex-colum justify-content-center align-items-center' style={{ width: '14rem' }}>
+            <Card className='mb-5 d-flex flex-colum justify-content-center align-items-center' style={{ width: '19rem' }}>
               <Card.Img style={{ width: '180px', height: '150px' }} className='img-fluid ' variant="top" src={CardAvatar} />
               <Card.Body className='text-center' style={{ marginTop: '-50px' }}>
                 <Card.Title >{prof.name}</Card.Title>
-                <Card.Text>
+                <Card.Text >
+                <p className='fw-bold'>{prof.emails}</p>
                   {prof.bio}
+                 
                 </Card.Text>
-                {prof.email}
+                
                 {/* <Button variant="primary">Go somewhere</Button> */}
               </Card.Body>
               <div className='d-flex justify-content-end w-75 m-2'> <i class="fa-solid fa-bookmark"></i></div>
