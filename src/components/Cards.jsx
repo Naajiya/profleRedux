@@ -3,15 +3,24 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardAvatar from '../assets/addss.png'
 import { addNewProfile } from '../redux/profileSlice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
+import { addtwofavourite } from '../redux/favrtSlice';
+
 
 
 
 function Cards() {
   const profDetls = useSelector(state => state.profileReducer)
+  
+  const dispatch = useDispatch()
   // const email=useSelector(state=>state.mailReducer.email)
   console.log("prompt for profils",profDetls)
+
+  const handleClick=(prof)=>{
+    console.log('btn clikd')
+    dispatch(addtwofavourite(prof))
+  }
   return (
     <>
     <Row>
@@ -31,7 +40,7 @@ function Cards() {
                 
                 {/* <Button variant="primary">Go somewhere</Button> */}
               </Card.Body>
-              <div className='d-flex justify-content-end w-75 m-2'> <i class="fa-solid fa-bookmark"></i></div>
+              <div className='d-flex justify-content-end w-75 m-2'> <i onClick={()=>handleClick(prof)} class="fa-solid fa-bookmark"></i></div>
             </Card>
             </Col>
           ))

@@ -6,6 +6,7 @@ const favourites = createSlice({
     reducers:{
         addtwofavourite:((state,action)=>{
             state.push(action.payload)
+            console.log('clicked')
         })
     }
 })
