@@ -15,7 +15,10 @@ function Header() {
            
            Profile Viewer
           </Navbar.Brand>
-        <Link to={'/favourite'}> <button className='btn btn-warning p-1'> <i class="fa-solid fa-user-plus"></i></button></Link>
+        <div className='d-flex w-25 justify-content-between'>
+          <Link to={'/favourite'}> <button className='btn btn-warning p-1'> <i class="fa-solid fa-user-plus"></i></button></Link>
+         <button className='btn btn-dark' style={{padding:'1%'}}> <i class="fa-solid fa-square-poll-horizontal fa-2x"></i></button>
+        </div>
         </Container>
       </Navbar>
    </>
