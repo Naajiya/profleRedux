@@ -19,7 +19,8 @@ function Cards() {
 
   const handleClick=(prof)=>{
     console.log('btn clikd')
-    dispatch(addtwofavourite(prof))
+    console.log('pro to add to fav', prof)
+    dispatch(addtwofavourite(profDetls))
   }
   return (
     <>
@@ -37,7 +38,7 @@ function Cards() {
                   {prof.bio}
                  
                 </Card.Text>
-                
+               
                 {/* <Button variant="primary">Go somewhere</Button> */}
               </Card.Body>
               <div className='d-flex justify-content-end w-75 m-2'> <i onClick={()=>handleClick(prof)} class="fa-solid fa-bookmark"></i></div>

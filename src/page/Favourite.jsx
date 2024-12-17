@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 
 function Favourite() {
 
-    const fav= useSelector(state=>state.favrtReducer)
+    const fav= useSelector((state)=>state.favrtReducer)
     console.log("fav",fav)
   return (
     <>
