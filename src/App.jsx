@@ -14,6 +14,7 @@ import { addtwofavourite } from './redux/favrtSlice'
 import { Route, Routes } from 'react-router-dom'
 import Home from './page/Home'  
 import Favourite from './page/Favourite'
+import Poll from './page/Poll'
 
 
 
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         <Route element={<Home/>} path='/'/>
         <Route element={<Favourite/>} path='/favourite'/>
+        <Route element={<Poll/>} path='/poll'/>
       </Routes>
      
 

@@ -57,7 +57,7 @@ function Favourite() {
 
 
               :
-              <div className='text-warning'>Oopss.. There is no Favourites</div>
+              <div className='text-light'>Oopss.. There is no Favourites</div>
 
           }
         </Row>
