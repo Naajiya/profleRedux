@@ -1,8 +1,17 @@
 import React, { useState } from 'react'
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import { addNewProfile } from '../redux/profileSlice';
+import { useSelector } from 'react-redux';
+
 
 
 function Poll() {
+
+  const allPorfs=useSelector(state=>state.profileReducer)
+  console.log(allPorfs)
+
+  const names=allPorfs.find(item=>item.name=="safa").bio
+  console.log(names)
  
   const [count,setCount]=useState(0)
   const [optTwo,setOptTwo]=useState(0)
@@ -10,30 +19,40 @@ function Poll() {
   const [opFour,setOpFour]=useState(0)
   const now = 34
 
+  const [click,setClick]=useState(true)
+
   const handleOnclil=()=>{
-    setCount(count+1)
+    if(click){
+      setCount(count+1)
+    }
+   
+    setClick(false)
   }
 
   const hadleTwo=()=>{
-    setOptTwo(optTwo+1)
+    if(click){
+      setOptTwo(optTwo+1)
+    }
+    
+    setClick(false)
   }
   return (
     <>
       <div>
-        <div >  
+        <div className='p-4'>  
 
           <div className='p-2'>
             <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloremq Pariatur, laudantium alias?</h3>
           </div>
           <div className='d-flex justify-content-center shadow  '>
-            <div className=' d-flex w-75'>
+           
               <p className='mt-1 fw-bold me-3 fs-5'>Kerala :</p>
               <ProgressBar className='mt-2 w-75 border-light' onClick={handleOnclil}  now={count} label={`${count}%`} />
-            </div>
+            
           </div>
           <div className='d-flex justify-content-center shadow'>
             <p className='mt-1 fw-bold me-3 fs-5'>Kerala :</p>
-            <ProgressBar  className='mt-2 w-50 border-light' onClick={hadleTwo} now={optTwo} label={`${optTwo}%`} />
+            <ProgressBar  className='mt-2 w-50 border-light text-dark' onClick={hadleTwo} now={optTwo} label={`${optTwo}%`} />
           </div>
           <div className='d-flex justify-content-center'>
             <p className='mt-1 fw-bold me-3 fs-5'>Kerala :</p>
