@@ -8,19 +8,6 @@ import { use } from 'react';
 
 function Poll() {
 
-  const allPorfs = useSelector(state => state.profileReducer)
-  console.log(allPorfs)
-
-  useEffect(() => {
-    if (allPorfs) {
-      const names = allPorfs?.find(item => item.name == "safa")?.bio
-      console.log(names)
-    }
-  }, [])
-
-
-
-
   const [count, setCount] = useState(0)
   const [optTwo, setOptTwo] = useState(0)
   const [opThre, setOpThre] = useState(0)
