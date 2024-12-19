@@ -15,6 +15,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './page/Home'  
 import Favourite from './page/Favourite'
 import Poll from './page/Poll'
+import Login from './page/Login'
 
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route element={<Home/>} path='/'/>
         <Route element={<Favourite/>} path='/favourite'/>
         <Route element={<Poll/>} path='/poll'/>
+        <Route element={<Login/>} path='/login'/>
       </Routes>
      
 

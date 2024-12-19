@@ -17,7 +17,7 @@ function Header() {
           </Navbar.Brand>
           <div className='d-flex w-25 justify-content-between'>
             <Link to={'/favourite'}> <button className='btn btn-warning p-1'> <i class="fa-solid fa-user-plus"></i></button></Link>
-            <Link to={"/poll"}><button className='btn btn-dark' style={{ padding: '1%' }}> <i class="fa-solid fa-square-poll-horizontal fa-2x"></i></button></Link>
+            <Link to={"/login"}><button className='btn btn-dark' style={{ padding: '1%' }}> <i class="fa-solid fa-square-poll-horizontal fa-2x"></i></button></Link>
           </div>
         </Container>
       </Navbar>
