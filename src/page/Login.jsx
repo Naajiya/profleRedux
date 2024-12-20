@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+
 function Login() {
 
   const [name, setName] = useState('')
@@ -54,7 +55,8 @@ function Login() {
   }
 
 
-  const handleOK = () => {
+  const handleOK = (e) => {
+    e.preventDefault()
     console.log(name)
     console.log(mail)
     console.log(name == mail)
@@ -92,7 +94,7 @@ function Login() {
           }
           </FloatingLabel>
           
-          <Button onClick={handleOK} variant="light">Go to Poll</Button>
+          <Button onClick={(e)=>handleOK(e)} variant="light">Go to Poll</Button>
         </div>
       </div>
 

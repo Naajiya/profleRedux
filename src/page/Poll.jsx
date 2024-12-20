@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { addNewProfile } from '../redux/profileSlice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { use } from 'react';
+import { storeProgress } from '../redux/progresSlice';
+
+
 
 
 
 function Poll() {
+
+  const dispatch= useDispatch()
+  const valOne=useSelector(state=>state.progresReducer.progress )
 
   const [count, setCount] = useState(0)
   const [optTwo, setOptTwo] = useState(0)
@@ -16,20 +22,23 @@ function Poll() {
 
   const [click, setClick] = useState(true)
 
-  const handleOnclil = () => {
+  const handleOnclil = (e) => {
+    e.preventDefault()
     if (click) {
       setCount(count + 1)
+      dispatch(storeProgress(count))
     }
 
-    setClick(false)
+    // setClick(false)
   }
 
-  const hadleTwo = () => {
+  const hadleTwo = (e) => {
+    e.preventDefault();
     if (click) {
       setOptTwo(optTwo + 1)
     }
 
-    setClick(false)
+    // setClick(false)
   }
   return (
     <>
@@ -44,22 +53,22 @@ function Poll() {
       <div className="d-flex justify-content-center shadow">
         <p className="mt-1 fw-bold me-3 fs-5">Kerala :</p>
         <ProgressBar
-          className="mt-2 w-75 border-light"
-          onClick={handleOnclil}
-          now={count}
+          className="mt-2 w-50 border-light"
+          onClick={(e)=>handleOnclil(e)}
+          now={valOne}
           label={`${count}%`}
         />
       </div>
       <div className="d-flex justify-content-center shadow">
-        <p className="mt-1 fw-bold me-3 fs-5">Kerala :</p>
+        <p className="mt-1 fw-bold me-3 fs-5">Goa :</p>
         <ProgressBar
           className="mt-2 w-50 border-light text-dark"
-          onClick={hadleTwo}
+          onClick={(e)=>hadleTwo(e)}
           now={optTwo}
           label={`${optTwo}%`}
         />
       </div>
-      <div className="d-flex justify-content-center">
+      {/* <div className="d-flex justify-content-cent er">
         <p className="mt-1 fw-bold me-3 fs-5">Kerala :</p>
         <ProgressBar
           className="mt-2 w-50 border-light shadow"
@@ -74,7 +83,7 @@ function Poll() {
           now={now}
           label={`${now}%`}
         />
-      </div>
+      </div> */}
     </div>
   </div>
 </div>
