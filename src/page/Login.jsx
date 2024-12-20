@@ -9,7 +9,8 @@ import { useSelector } from 'react-redux';
 
 function Login() {
 
-  const [name,setName]=useState(false)
+  const [name,setName]=useState({})
+  const [mail,setMail]=useState({})
   // console.log(name)
 
   const allPorfs = useSelector(state => state.profileReducer)
@@ -22,6 +23,25 @@ function Login() {
    console.log("ok",ok.name)
    setName(ok)
    
+   
+  }
+
+  const handleMail=(mal)=>{
+    const m=allPorfs?.find(f=>f.emails==mal)
+    console.log(m)
+    setMail(m)
+  }
+
+
+  const handleOK=()=>{
+    console.log(name)
+    console.log(mail)
+    console.log(name==mail)
+    if(name==mail){
+
+    }else{
+      alert("name and password not match")
+    }
   }
 
 
@@ -35,9 +55,9 @@ function Login() {
             <Form.Control onBlur={(e)=>handleName(e.target.value)} type="text" placeholder="Password" />
           </FloatingLabel>
           <FloatingLabel controlId="floatingPassword1" label="Email" className='mb-3'>
-            <Form.Control type="email" placeholder="Password" />
+            <Form.Control onBlur={(e)=>handleMail(e.target.value)} type="email" placeholder="Password" />
           </FloatingLabel>
-          <Button variant="light">Go to Poll</Button>
+          <Button onClick={handleOK} variant="light">Go to Poll</Button>
         </div>
       </div>
 
