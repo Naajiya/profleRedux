@@ -3,7 +3,8 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import { addNewProfile } from '../redux/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { use } from 'react';
-import { storeProgress } from '../redux/progresSlice';
+import { storeProgress, storeProgressTwo } from '../redux/progresSlice';
+
 
 
 
@@ -12,7 +13,8 @@ import { storeProgress } from '../redux/progresSlice';
 function Poll() {
 
   const dispatch= useDispatch()
-  const valOne=useSelector(state=>state.progresReducer.progress )
+  const valOne=useSelector(state=>state.progresReducer.progressone )
+  const valTwo = useSelector(state=>state.progresReducer.progresstwo)
 
   const [count, setCount] = useState(0)
   const [optTwo, setOptTwo] = useState(0)
@@ -26,19 +28,22 @@ function Poll() {
     e.preventDefault()
     if (click) {
       setCount(count + 1)
-      dispatch(storeProgress(count))
+      const update=valOne+1
+      dispatch(storeProgress(update))
     }
 
-    // setClick(false)
+    setClick(false)
   }
 
   const hadleTwo = (e) => {
     e.preventDefault();
     if (click) {
       setOptTwo(optTwo + 1)
+      const updTow=valTwo+1;
+      dispatch(storeProgressTwo(updTow))
     }
 
-    // setClick(false)
+    setClick(false)
   }
   return (
     <>
@@ -56,7 +61,7 @@ function Poll() {
           className="mt-2 w-50 border-light"
           onClick={(e)=>handleOnclil(e)}
           now={valOne}
-          label={`${count}%`}
+          label={`${valOne}%`}
         />
       </div>
       <div className="d-flex justify-content-center shadow">
