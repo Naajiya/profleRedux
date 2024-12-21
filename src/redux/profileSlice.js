@@ -2,13 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const profiles=createSlice({
     name:'profile',
-    initialState:[],
+    initialState:{
+        profiles:[],
+        logins:[]
+    },
     reducers:{
         addNewProfile:((state,action)=>{
-            state.push(action.payload)
+            state.profiles.push(action.payload)
         }),
+        addToLogin:((state,action)=>{
+            state.logins.push((action.payload))
+        })
     }
 })
 
-export const {addNewProfile}=profiles.actions
+export const {addNewProfile,addToLogin}=profiles.actions
 export default profiles.reducer

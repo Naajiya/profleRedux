@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 function Cards() {
-  const profDetls = useSelector(state => state.profileReducer)
+  const profDetls = useSelector(state => state.profileReducer.profiles)
 
   const dispatch = useDispatch()
   // const email=useSelector(state=>state.mailReducer.email)

@@ -3,14 +3,17 @@ import { Col, Container, Row } from 'react-bootstrap'
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { addToLogin } from '../redux/profileSlice';
 
 
 
 
 
 function Login() {
+
+  const dispatch = useDispatch()
 
   const [name, setName] = useState('')
   const [mail, setMail] = useState('')
@@ -21,7 +24,8 @@ function Login() {
   const [nameFind, setNameFind] = useState(false)
   const [malFind, setMailFind] = useState(false)
 
-  const allPorfs = useSelector(state => state.profileReducer)
+  const allPorfs = useSelector(state => state.profileReducer.profiles)
+  const allLogs = useSelector(state=>state.profileReducer.logins)
   // console.log(allPorfs)
 
   const handleName = (name) => {
@@ -62,7 +66,13 @@ function Login() {
     console.log(name == mail)
     if(name && mail){
       if (name == mail) {
-        navigate('/poll')
+        if(allLogs?.find(f=>f.name)){
+          alert('you already polled')
+        }else{
+          navigate('/poll')
+          dispatch(addToLogin(name))
+        }
+       
       } else {
         alert("name and password not match")
       }
